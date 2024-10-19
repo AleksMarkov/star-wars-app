@@ -1,0 +1,126 @@
+/* src/CharacterGrid.css */
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0B0C10; /* Dark background */
+    color: #C5C6C7; /* Light gray text */
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 20px; /* Increased top padding for more space */
+  }
+  
+  /* Logo Styles */
+  .logo {
+    display: block;
+    margin: 0 auto 0px auto; /* Center the logo and add bottom margin */
+    max-width: 200px; /* Adjust the size as needed */
+    width: 50%;
+  }
+  
+  /* Grid Container */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* Remove max-width to allow grid to fill the container */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    gap: 20px;
+  }
+  
+  /* Grid Items (Characters) */
+  .grid-item {
+    background-color: transparent;
+    color: #ffee00;
+    padding: 20px;
+    outline: #ffee00;
+    border: 2px solid #ffee00;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+    /* Removed fixed box-shadow */
+  }
+  
+  .grid-item:hover {
+    background-color: #ffee00;
+    color: #0B0C10;
+    transform: translateY(-5px);
+  }
+  
+  .grid-item h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+  }
+  
+  .pagination button {
+    background-color: transparent;
+    color: #ffee00;
+    border: 2px solid #ffee00;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .pagination button:hover {
+    background-color: #ffee00;
+    color: #0B0C10;
+  }
+  
+  .pagination button:disabled {
+    color: #C5C6C7;
+    border-color: #C5C6C7;
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+  
+  .pagination .page-number {
+    font-size: 1em;
+    margin: 0 10px;
+    color: #C5C6C7;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grid-item {
+      padding: 15px;
+    }
+  
+    .pagination button {
+      padding: 8px 16px;
+      margin: 0 5px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-item {
+      padding: 10px;
+    }
+  
+    .pagination button {
+      margin: 5px 0;
+    }
+  }
+  

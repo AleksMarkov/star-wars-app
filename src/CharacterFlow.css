@@ -1,0 +1,76 @@
+/* src/CharacterFlow.css */
+
+.back-button-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}
+
+.back-button img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Node Styles */
+.react-flow__node {
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.react-flow__node-default {
+  background-color: #FFD700;
+  border: 2px solid #FFD700;
+  color: #000;
+}
+
+/* Level-specific Node Styles */
+.node-character {
+  background-color: #FFD700;
+}
+
+.node-film {
+  background-color: #FFC107;
+}
+
+.node-starship {
+  background-color: #FFB300;
+}
+
+/* Edge Styles */
+.react-flow__edge-path {
+  stroke: #FFD700;
+  stroke-width: 2;
+}
+
+/* Node Animations */
+.react-flow__node:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+/* Custom Background */
+.react-flow__background {
+  background-color: #000;
+}
+
+/* Override Dots Background */
+.react-flow__background-dots path {
+  fill: #fff;
+}
