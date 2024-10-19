@@ -6,7 +6,7 @@ import 'reactflow/dist/style.css';
 import { fetchCharacterDetails } from './api';
 import { Character } from './types';
 import { DataContext } from './DataContext';
-import BackIcon from './assets/BackupBack.png'; // Убедитесь, что файл находится в этой папке
+import BackIcon from './assets/BackupBack.png'; 
 import './CharacterFlow.css';
 
 const CharacterFlow: React.FC = () => {
