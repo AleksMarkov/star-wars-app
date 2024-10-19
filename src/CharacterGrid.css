@@ -63,14 +63,28 @@ body {
     margin: 0;
     font-size: 1.2em;
   }
-  
+ 
   /* Pagination */
-  .pagination {
+.pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0B0C10; /* Фон, соответствующий вашему дизайну */
+  padding: 10px 0;
+}
+
+
+  /* Pagination */
+  /* .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 30px 0;
-  }
+  } */
   
   .pagination button {
     background-color: transparent;

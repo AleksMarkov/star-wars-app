@@ -8,6 +8,7 @@ import SWSI from './SWSI.svg'; // Import the logo
 
 const CharacterGrid: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [totalCharacters, setTotalCharacters] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
   const navigate = useNavigate();
 
@@ -15,6 +16,7 @@ const CharacterGrid: React.FC = () => {
     const getCharacters = async () => {
       const data = await fetchCharacters(page);
       setCharacters(data.results);
+      setTotalCharacters(data.count);
     };
     getCharacters();
   }, [page]);
@@ -43,15 +45,24 @@ const CharacterGrid: React.FC = () => {
         ))}
       </div>
       <div className="pagination">
-        <button
-          onClick={() => setPage((p) => Math.max(p - 1, 1))}
-          disabled={page === 1}
-        >
-          {'<'}
-        </button>
-        <span className="page-number">Page {page}</span>
-        <button onClick={() => setPage((p) => p + 1)}>{'>'}</button>
-      </div>
+  <button
+    onClick={() => setPage((p) => Math.max(p - 1, 1))}
+    disabled={page === 1}
+  >
+    {'<'}
+  </button>
+  <span className="page-number">Page {page}</span>
+  <button
+    onClick={() => {
+      if (page < Math.ceil(totalCharacters / 10)) {
+        setPage((p) => p + 1);
+      }
+    }}
+    disabled={page >= Math.ceil(totalCharacters / 10)}
+  >
+    {'>'}
+  </button>
+</div>
     </div>
   );
 };
