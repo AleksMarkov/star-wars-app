@@ -1,0 +1,17 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" width="1500" height="1500">
+	<title>SWSI-svg</title>
+	<style>
+		tspan { white-space:pre } 
+		.s0 { fill: #000000 } 
+		.t1 { font-size: 350px;fill: #ffc400;font-weight: 400;font-family: "BungeeShade-Regular", "Bungee Shade" } 
+	</style>
+	<path id="Layer 2" class="s0" d="m749.5 1429c-375.8 0-679.5-303.7-679.5-679.5 0-375.8 303.7-679.5 679.5-679.5 375.8 0 679.5 303.7 679.5 679.5 0 375.8-303.7 679.5-679.5 679.5z"/>
+	<text id="sw" style="transform: matrix(1.596,0,0,1.596,275,192)" >
+		<tspan x="0" y="297.1" class="t1">s</tspan><tspan  y="297.1" class="t1">w</tspan><tspan  y="297.1" class="t1">
+</tspan>
+	</text>
+	<text id="SI" style="transform: matrix(1.596,0,0,1.596,336.407,1173.584)" >
+		<tspan x="0" y="0" class="t1">S</tspan><tspan  y="0" class="t1">I
+</tspan>
+	</text>
+</svg>

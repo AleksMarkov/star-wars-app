@@ -1,21 +1,23 @@
 // src/types.ts
 
-export interface Character {
-    name: string;
-    url: string;
-    films: number[];
-    starships: number[];
-    [key: string]: any; // For additional properties
-  }
-  
-  export interface Film {
-    title: string;
-    starships: number[];
-    [key: string]: any;
-  }
-  
-  export interface Starship {
-    name: string;
-    [key: string]: any;
-  }
-  
+export interface BaseEntity {
+  id: number;
+  url: string;
+  name?: string;
+  [key: string]: any; // For additional properties
+}
+
+export interface Character extends BaseEntity {
+  name: string;
+  films: number[];
+  starships: number[];
+}
+
+export interface Film extends BaseEntity {
+  title: string;
+  starships: number[];
+}
+
+export interface Starship extends BaseEntity {
+  name: string;
+}
