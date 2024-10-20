@@ -1,11 +1,10 @@
 {
-    "presets": [
-      ["@babel/preset-env", {
-        "modules": false
-      }],
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ],
-    "plugins": ["@babel/plugin-proposal-private-property-in-object"]
-  }
-  
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": "commonjs"  // Принудительно обрабатываем модули как CommonJS для Jest
+    }],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["@babel/plugin-proposal-private-property-in-object"]
+}
