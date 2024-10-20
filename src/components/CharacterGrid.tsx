@@ -1,10 +1,10 @@
 // src/CharacterGrid.tsx
 import React, { useEffect, useState } from 'react';
-import { fetchCharacters } from './api';
+import { fetchCharacters } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import './CharacterGrid.css';
-import { Character } from './types';
-import SWSI from './SWSI.svg'; // Import the logo
+import { Character } from '../types';
+import SWSI from '../assets/SWSI.svg'; // Import the logo
 
 const CharacterGrid: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);

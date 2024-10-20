@@ -1,10 +1,10 @@
 // src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CharacterGrid from './CharacterGrid';
-import CharacterFlow from './CharacterFlow';
-import { DataProvider } from './DataContext';
-import StarfieldBackground from './StarfieldBackground';
+import CharacterGrid from './components/CharacterGrid';
+import CharacterFlow from './components/CharacterFlow';
+import { DataProvider } from './context/DataContext';
+import StarfieldBackground from './utils/StarfieldBackground';
 
 const App: React.FC = () => {
   return (

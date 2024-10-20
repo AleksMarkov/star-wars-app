@@ -3,10 +3,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactFlow, { Node, Edge, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { fetchCharacterDetails } from './api';
-import { Character } from './types';
-import { DataContext } from './DataContext';
-import BackIcon from './assets/BackupBack.png'; 
+import { fetchCharacterDetails } from '../services/api';
+import { Character } from '../types';
+import { DataContext } from '../context/DataContext';
+import BackIcon from '../assets/BackupBack.png'; 
 import './CharacterFlow.css';
 
 const CharacterFlow: React.FC = () => {
@@ -42,8 +42,7 @@ const CharacterFlow: React.FC = () => {
         const edgesArray: Edge[] = [];
 
         // Constants for positioning
-        const nodeWidth = 150;
-        const nodeHeight = 50;
+  
         const horizontalSpacing = 200;
         const verticalSpacing = 150;
 
