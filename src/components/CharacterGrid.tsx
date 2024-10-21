@@ -1,8 +1,8 @@
-// src/CharacterGrid.tsx
+// src/components/CharacterGrid.tsx
 import React, { useEffect, useState } from 'react';
 import { fetchCharacters } from '../services/api';
 import { useNavigate } from 'react-router-dom';
-import { Character } from '../types';
+import { Character } from '../types/types';
 import SWSI from '../assets/SWSI.svg'; // Import the logo
 import './CharacterGrid.css';
 

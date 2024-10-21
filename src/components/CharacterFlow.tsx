@@ -1,10 +1,10 @@
-// src/CharacterFlow.tsx
+// src/components/CharacterFlow.tsx
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactFlow, { Node, Edge, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { fetchCharacterDetails } from '../services/api';
-import { Character } from '../types';
+import { Character } from '../types/types';
 import { DataContext } from '../context/DataContext';
 import BackIcon from '../assets/BackupBack.png'; 
 import './CharacterFlow.css';

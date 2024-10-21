@@ -1,4 +1,4 @@
-// src/types.ts
+// src/types/types.ts
 
 export interface BaseEntity {
   id: number;

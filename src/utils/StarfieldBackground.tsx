@@ -1,4 +1,4 @@
-// src/StarfieldBackground.tsx
+// src/utils/StarfieldBackground.tsx
 import React, { useEffect, useRef } from 'react';
 
 interface Star {
