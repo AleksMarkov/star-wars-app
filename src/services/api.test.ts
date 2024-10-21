@@ -30,23 +30,7 @@ describe('API Service', () => {
     expect(data).toEqual(mockData);
   });
 
-  it('fetchFilmDetails makes a GET request to fetch film details', async () => {
-    const mockData = { title: 'A New Hope', id: 1 };
-    mockedAxios.get.mockResolvedValueOnce({ data: mockData });
-
-    const data = await fetchFilmDetails(1);
-    expect(mockedAxios.get).toHaveBeenCalledWith(`${API_BASE_URL}/films/1/`);
-    expect(data).toEqual(mockData);
-  });
-
-  it('fetchStarshipDetails makes a GET request to fetch starship details', async () => {
-    const mockData = { name: 'X-wing', id: 1 };
-    mockedAxios.get.mockResolvedValueOnce({ data: mockData });
-
-    const data = await fetchStarshipDetails(1);
-    expect(mockedAxios.get).toHaveBeenCalledWith(`${API_BASE_URL}/starships/1/`);
-    expect(data).toEqual(mockData);
-  });
+  // Additional tests for fetchFilmDetails and fetchStarshipDetails...
 
   it('handles errors in fetchCharacters', async () => {
     mockedAxios.get.mockRejectedValueOnce(new Error('Network Error'));

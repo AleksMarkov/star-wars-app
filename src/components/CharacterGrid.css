@@ -82,16 +82,19 @@ a {
 
 .grid-item:hover::before {
   opacity: 1;
-  animation: pan-down 5s forwards;
+  animation: pan-down 5s infinite;
 }
 
 /* Keyframes for panning effect */
 @keyframes pan-down {
-  from {
+  0% {
     background-position: top center;
   }
-  to {
+  50% {
     background-position: bottom center;
+  }
+  100% {
+    background-position: top center;
   }
 }
 
@@ -170,5 +173,47 @@ a {
 
   .pagination button {
     margin: 5px 0;
+  }
+}
+
+/* Spinner code */
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed; /* Covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it's on top of all other elements */
+}
+
+/* X-wing Image */
+.xwing {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  animation: tilt 2s infinite ease-in-out;
+}
+
+/* Tilt Animation */
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

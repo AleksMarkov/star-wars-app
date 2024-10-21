@@ -5,30 +5,64 @@ import { act } from 'react';
 import '@testing-library/jest-dom';
 import CharacterGrid from './CharacterGrid';
 import { DataContext } from '../context/DataContext';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+import { fetchCharacters } from '../services/api';
 
-// Mock react-router-dom hooks and components
+// Define the mockNavigate before jest.mock
+const mockNavigate = jest.fn();
+
+// Mock react-router-dom and override useNavigate
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => jest.fn(),
+  // Preserve other functionalities from react-router-dom
+  ...(jest.requireActual('react-router-dom')),
+  useNavigate: () => mockNavigate,
 }));
 
-// Mock axios
-import axios from 'axios';
-jest.mock('axios');
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+// Mock fetchCharacters
+jest.mock('../services/api', () => ({
+  fetchCharacters: jest.fn(),
+}));
+
+// Mock the SWSI logo
+jest.mock('../assets/SWSI.svg', () => 'mocked-svg');
 
 describe('CharacterGrid Component', () => {
-  const mockCharactersResponse = {
-    results: [
-      { id: 1, name: 'Luke Skywalker', url: 'https://sw-api.starnavi.io/people/1/' },
-      { id: 2, name: 'Darth Vader', url: 'https://sw-api.starnavi.io/people/2/' },
-    ],
-    count: 2,
+  const mockCharacters = [
+    {
+      id: 1,
+      name: 'Luke Skywalker',
+      height: '172',
+      mass: '77',
+      birth_year: '19BBY',
+      films: [1],
+      starships: [1],
+      url: 'https://sw-api.starnavi.io/people/1/',
+    },
+    {
+      id: 2,
+      name: 'Darth Vader',
+      height: '202',
+      mass: '136',
+      birth_year: '41.9BBY',
+      films: [1],
+      starships: [2],
+      url: 'https://sw-api.starnavi.io/people/2/',
+    }
+  ];
+
+  const mockContextValue = {
+    films: {},
+    starships: {},
   };
 
   beforeEach(() => {
-    mockedAxios.get.mockResolvedValueOnce({ data: mockCharactersResponse });
+    (fetchCharacters as jest.Mock).mockResolvedValue({
+      results: mockCharacters,
+      count: 2,
+    });
+
+    // Clear mockNavigate calls before each test
+    mockNavigate.mockClear();
   });
 
   afterEach(() => {
@@ -38,10 +72,10 @@ describe('CharacterGrid Component', () => {
   it('renders character cards', async () => {
     await act(async () => {
       render(
-        <DataContext.Provider value={{ films: {}, starships: {} }}>
-          <BrowserRouter>
+        <DataContext.Provider value={mockContextValue}>
+          <MemoryRouter>
             <CharacterGrid />
-          </BrowserRouter>
+          </MemoryRouter>
         </DataContext.Provider>
       );
     });
@@ -51,54 +85,52 @@ describe('CharacterGrid Component', () => {
   });
 
   it('navigates to character details when card is clicked', async () => {
-    const mockNavigate = jest.fn();
-    jest.spyOn(require('react-router-dom'), 'useNavigate').mockImplementation(() => mockNavigate);
-
     await act(async () => {
       render(
-        <DataContext.Provider value={{ films: {}, starships: {} }}>
-          <BrowserRouter>
+        <DataContext.Provider value={mockContextValue}>
+          <MemoryRouter>
             <CharacterGrid />
-          </BrowserRouter>
+          </MemoryRouter>
         </DataContext.Provider>
       );
     });
 
-    const lukeCard = screen.getByText('Luke Skywalker').closest('.grid-item') as HTMLElement;
+    const lukeCard = screen.getByText('Luke Skywalker').closest('[data-testid="character-card"]') as HTMLElement;
     fireEvent.click(lukeCard);
 
     expect(mockNavigate).toHaveBeenCalledWith('/character/1');
   });
 
   it('shows loading state', async () => {
-    // Mock axios to never resolve to simulate loading
-    mockedAxios.get.mockImplementationOnce(() => new Promise(() => {}));
+    // Mock fetchCharacters to return a pending promise to simulate loading
+    (fetchCharacters as jest.Mock).mockImplementationOnce(() => new Promise(() => {}));
 
     render(
-      <DataContext.Provider value={{ films: {}, starships: {} }}>
-        <BrowserRouter>
+      <DataContext.Provider value={mockContextValue}>
+        <MemoryRouter>
           <CharacterGrid />
-        </BrowserRouter>
+        </MemoryRouter>
       </DataContext.Provider>
     );
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
   it('shows error state', async () => {
-    mockedAxios.get.mockRejectedValueOnce(new Error('Failed to fetch characters'));
+    (fetchCharacters as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch characters'));
 
     await act(async () => {
       render(
-        <DataContext.Provider value={{ films: {}, starships: {} }}>
-          <BrowserRouter>
+        <DataContext.Provider value={mockContextValue}>
+          <MemoryRouter>
             <CharacterGrid />
-          </BrowserRouter>
+          </MemoryRouter>
         </DataContext.Provider>
       );
     });
 
     await waitFor(() => {
+      expect(screen.getByTestId('error-message')).toBeInTheDocument();
       expect(screen.getByText('Failed to fetch characters')).toBeInTheDocument();
     });
   });
