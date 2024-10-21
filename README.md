@@ -6,7 +6,6 @@ Welcome to **Star Wars Starship Info**, a React-based web application that provi
 
 ## Table of Contents
 
-- [Demo](#demo)
 - [Features](#features)
 - [Technologies](#technologies)
 - [Installation](#installation)
@@ -14,12 +13,6 @@ Welcome to **Star Wars Starship Info**, a React-based web application that provi
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Demo
-
-![App Screenshot](public/SWSI.svg)
-
-*Note: Replace the above image link with an actual screenshot of your application if available.*
 
 ## Features
 
