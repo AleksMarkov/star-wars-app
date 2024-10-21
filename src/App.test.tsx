@@ -1,28 +1,27 @@
-// App.test.tsx
+// src/App.test.tsx
 // src/App.test.tsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { act } from 'react'; // Убедитесь, что act импортируется из 'react'
+import { act } from 'react';
 import '@testing-library/jest-dom';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-// Мокаем статические ресурсы
-jest.mock('./assets/SWSI.svg', () => 'mocked-svg');
+// Mock react-router-dom components and hooks
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  BrowserRouter: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  Routes: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  Route: () => null,
+  useNavigate: () => jest.fn(),
+}));
 
-// Мокаем модуль DataContext
+// Mock DataContext
 jest.mock('./context/DataContext', () => ({
   DataProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
-// Мокаем react-router-dom
-jest.mock('react-router-dom', () => ({
-  BrowserRouter: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  Routes: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-  Route: () => null,
-  useNavigate: () => jest.fn()
-}));
-
-// Мокаем компонент StarfieldBackground
+// Mock StarfieldBackground component
 jest.mock('./utils/StarfieldBackground', () => ({
   __esModule: true,
   default: () => <div data-testid="starfield-background">Starfield Background</div>,
