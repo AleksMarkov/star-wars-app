@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <DataProvider>
       <StarfieldBackground />
-      <Router basename="/star-wars-app">
+      <Router>
         <Routes>
           <Route path="/" element={<CharacterGrid />} />
           <Route path="/character/:id" element={<CharacterFlow />} />
@@ -21,3 +21,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

@@ -2,7 +2,7 @@
   "name": "star-wars-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aleksmarkov.github.io/star-wars-app",
+  
   "dependencies": {
     "@types/node": "^16.18.114",
     "@types/react": "^18.3.11",
@@ -23,9 +23,8 @@
     "test": "jest --config jest.config.js",
     "test:watch": "jest --config jest.config.js --watch",
     "test:coverage": "jest --config jest.config.js --coverage",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": [
